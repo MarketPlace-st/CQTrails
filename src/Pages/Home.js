@@ -1,16 +1,33 @@
-import Header from "../Componentes/Header";
-import Footer from "../Componentes/Footer";
+import Header from "../Componentes/Header"
+import HeroSection from "../Componentes/HeroSection"
+import VehicleSection from "../Componentes/VehicleSection"
+import CommercialVehicles from "../Componentes/CommercialVehicle"
+import ServicesSection from "../Componentes/ServicesSection"
+import WhyChooseUs from "../Componentes/WhyChooseUs"
+import Footer from "../Componentes/Footer"
+import "../Estilos/Home.css"
 
-export default function Home() {
+function Home() {
   return (
     <div className="home-page">
       <Header />
-
-      <main className="main-content">
-        {/* Aquí irá el contenido principal del landing page */}
+      <main>
+        <HeroSection />
+        <VehicleSection />
+        <CommercialVehicles />
+        <ServicesSection />
+        <WhyChooseUs />
       </main>
-
       <Footer />
     </div>
-  );
+  )
 }
+
+export default Home
+
+
+
+
+
+
+

@@ -1,96 +1,84 @@
-import { useState, useRef, useEffect } from "react";
-import { ChevronDown, Menu } from "lucide-react";
-import Logo from "../Imagenes/Logo.png";
-import "../Estilos/Header.css";
+"use client"
 
-export default function Header() {
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [mobileOpen, setMobileOpen] = useState(false);
-  const dropdownRef = useRef();
-  const mobileRef = useRef();
+import { useState, useEffect } from "react"
+import "../Estilos/Header.css"
+import logo from "../Imagenes/Logo.png"
+
+function Header() {
+  const [dropdownOpen, setDropdownOpen] = useState(false)
+
+  const toggleDropdown = (e) => {
+    e.preventDefault()
+    e.stopPropagation()
+    setDropdownOpen(!dropdownOpen)
+  }
+
+  const closeDropdown = () => {
+    setDropdownOpen(false)
+  }
 
   useEffect(() => {
-    function handleClickOutside(event) {
-      if (
-        dropdownRef.current &&
-        !dropdownRef.current.contains(event.target)
-      ) {
-        setDropdownOpen(false);
-      }
-      if (mobileRef.current && !mobileRef.current.contains(event.target)) {
-        setMobileOpen(false);
+    const handleClickOutside = (e) => {
+      if (!e.target.closest(".dropdown-container")) {
+        closeDropdown()
       }
     }
 
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
+    document.addEventListener("click", handleClickOutside)
+    return () => {
+      document.removeEventListener("click", handleClickOutside)
+    }
+  }, [])
 
   return (
     <header className="header">
-      <div className="header-container">
-        {/* Logo */}
-        <div className="logo-section">
-          <img src={Logo} alt="Logo CQ" className="logo-img" />
+      <div className="container header-container">
+        <div className="logo-container">
+          <img src={logo || "/placeholder.svg"} alt="CQ TRAILS" className="logo" />
         </div>
-
-        {/* Desktop Nav */}
-        <nav className="nav">
-          <div className="dropdown" ref={dropdownRef}>
-            <button
-              onClick={() => setDropdownOpen(!dropdownOpen)}
-              className="nav-button"
-            >
-              Reservaciones
-              <ChevronDown
-                size={16}
-                className={`chevron ${dropdownOpen ? "rotate" : ""}`}
-              />
-            </button>
-            {dropdownOpen && (
-              <div className="dropdown-menu">
-                <a href="/historial-reservaciones" className="dropdown-item">
-                  Historial de Reservaciones
-                </a>
-              </div>
-            )}
+        <nav className="navigation">
+          <div className="nav-links">
+            <div className="dropdown-container">
+              <a href="#" className="nav-link dropdown-toggle" onClick={toggleDropdown}>
+                Reservaciones <span className="dropdown-arrow">{dropdownOpen ? "▲" : "▼"}</span>
+              </a>
+              {dropdownOpen && (
+                <div className="dropdown-menu">
+                  <a href="#reservar" className="dropdown-item">
+                    Reservar
+                  </a>
+                  <a href="#historial" className="dropdown-item">
+                    Historial de Reservaciones
+                  </a>
+                </div>
+              )}
+            </div>
+            <a href="#contacto" className="nav-link">
+              Contacto
+            </a>
           </div>
-
-          <a href="/contacto" className="nav-link">
-            Contacto
-          </a>
         </nav>
-
-        {/* Buttons */}
-        <div className="buttons">
-          <button className="btn login">Iniciar Sesión</button>
-          <button className="btn signup">Crear Cuenta</button>
+        <div className="auth-buttons">
+          <button className="btn btn-login">Iniciar Sesión</button>
+          <button className="btn btn-register">Crear Cuenta</button>
         </div>
-
-        {/* Mobile Toggle */}
-        <button
-          className="menu-toggle"
-          onClick={() => setMobileOpen(!mobileOpen)}
-        >
-          <Menu size={24} />
-        </button>
       </div>
-
-      {/* Mobile Menu */}
-      {mobileOpen && (
-        <div className="mobile-menu" ref={mobileRef}>
-          <a href="/historial-reservaciones" className="dropdown-item">
-            Historial de Reservaciones
-          </a>
-          <a href="/contacto" className="dropdown-item">
-            Contacto
-          </a>
-          <button className="btn login">Iniciar Sesión</button>
-          <button className="btn signup">Crear Cuenta</button>
-        </div>
-      )}
     </header>
-  );
+  )
 }
+
+export default Header
+
+
+
+
+
+
+
+
+
+
+
+
 
 

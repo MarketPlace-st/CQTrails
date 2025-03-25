@@ -1,0 +1,104 @@
+.commercial-section {
+    padding: 40px 0;
+    background-color: #008f39;
+    color: white;
+  }
+  
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+  }
+  
+  .section-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: white;
+  }
+  
+  .view-more {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+  }
+  
+  .arrow {
+    margin-left: 5px;
+    transition: transform 0.3s ease;
+  }
+  
+  .view-more:hover .arrow {
+    transform: translateX(5px);
+  }
+  
+  .commercial-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+  }
+  
+  .commercial-card {
+    background-color: white;
+    border-radius: 8px;
+    display: flex;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .commercial-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  }
+  
+  .commercial-info {
+    padding: 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .commercial-brand {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 10px;
+    line-height: 1.2;
+  }
+  
+  .commercial-price {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #008f39;
+  }
+  
+  .commercial-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f5f5f5;
+  }
+  
+  .commercial-image img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+  
+  @media (max-width: 768px) {
+    .commercial-grid {
+      grid-template-columns: 1fr;
+    }
+  
+    .section-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+    }
+  }
+  
+  

@@ -1,0 +1,125 @@
+.vehicles-section {
+    padding: 80px 0 40px;
+    background-color: white;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+  }
+  
+  .section-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #333;
+  }
+  
+  .view-more {
+    color: #008f39;
+    text-decoration: none;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+  }
+  
+  .arrow {
+    margin-left: 5px;
+    transition: transform 0.3s ease;
+  }
+  
+  .view-more:hover .arrow {
+    transform: translateX(5px);
+  }
+  
+  .vehicles-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+  
+  .vehicle-card {
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .vehicle-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  .vehicle-image {
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f5f5f5;
+  }
+  
+  .vehicle-image img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+  
+  .vehicle-info {
+    padding: 15px;
+    background-color: white;
+  }
+  
+  .vehicle-brand {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+  }
+  
+  .brand-logo {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+  }
+  
+  .vehicle-name {
+    font-weight: 600;
+    color: #333;
+  }
+  
+  .vehicle-price {
+    color: #008f39;
+    font-weight: 700;
+  }
+  
+  @media (max-width: 992px) {
+    .vehicles-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .vehicles-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  
+    .section-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .vehicles-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  
