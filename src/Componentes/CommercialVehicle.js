@@ -1,55 +1,69 @@
 import "../Estilos/CommercialVehicles.css"
 
-function CommercialVehicleCard({ image, brand, model, price }) {
-  return (
-    <div className="commercial-card">
-      <div className="commercial-info">
-        <h3 className="commercial-brand">
-          {brand}
-          <br />
-          {model}
-        </h3>
-        <div className="commercial-price">$ {price}</div>
-      </div>
-      <div className="commercial-image">
-        <img src={image || "/placeholder.svg"} alt={`${brand} ${model}`} />
-      </div>
-    </div>
-  )
-}
+// Importamos las imágenes de los vehículos
+import renaultPremium from "../Imagenes/CamionsinCaja.png" 
+import volvoFH from "../Imagenes/CamionLarge.png" 
+
+// Importamos los logos de las marcas
+import renaultLogo from "../Imagenes/Logo Renault.png" 
+import volvoLogo from "../Imagenes/Logo Volvo.png" 
 
 function CommercialVehicles() {
-  const commercialVehicles = [
-    {
-      id: 1,
-      image: "/placeholder.svg?height=150&width=200",
-      brand: "Renault",
-      model: "Premium",
-      price: "36 000",
-    },
-    {
-      id: 2,
-      image: "/placeholder.svg?height=150&width=200",
-      brand: "Volvo",
-      model: "FH",
-      price: "24 000",
-    },
-  ]
-
   return (
     <section className="commercial-section">
-      <div className="container">
+      <div className="commercial-container">
         <div className="section-header">
-          <h2 className="section-title">Vehículos Comerciales</h2>
+          <h2 className="commercialVehicle-title">Vehículos Comerciales</h2>
           <a href="#mas-comerciales" className="view-more">
-            Ver más <span className="arrow">→</span>
+            Ver más{" "}
+            <svg
+              className="arrow-icon"
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M5 12h14"></path>
+              <path d="M12 5l7 7-7 7"></path>
+            </svg>
           </a>
         </div>
 
         <div className="commercial-grid">
-          {commercialVehicles.map((vehicle) => (
-            <CommercialVehicleCard key={vehicle.id} {...vehicle} />
-          ))}
+          <div className="commercial-card">
+            <div className="card-content">
+              <img src={renaultLogo || "/placeholder.svg"} alt="Renault" className="brand-logo" />
+              <h3 className="commercial-brand">
+                Renault
+                <br />
+                Premium
+              </h3>
+              <div className="price-badge">$ 36 000</div>
+            </div>
+            <div className="commercial-image">
+              <img src={renaultPremium || "/placeholder.svg"} alt="Renault Premium" />
+            </div>
+          </div>
+
+          <div className="commercial-card">
+            <div className="card-content">
+              <img src={volvoLogo || "/placeholder.svg"} alt="Volvo" className="brand-logo" />
+              <h3 className="commercial-brand">
+                Volvo
+                <br />
+                FH
+              </h3>
+              <div className="price-badge">$ 24 000</div>
+            </div>
+            <div className="commercial-image">
+              <img src={volvoFH || "/placeholder.svg"} alt="Volvo FH" />
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -57,3 +71,6 @@ function CommercialVehicles() {
 }
 
 export default CommercialVehicles
+
+
+

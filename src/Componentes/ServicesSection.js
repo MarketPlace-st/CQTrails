@@ -1,68 +1,70 @@
 import "../Estilos/ServicesSection.css"
 
-function ServiceCard({ image, title }) {
-  return (
-    <div className="service-card">
-      <div className="service-image">
-        <img src={image || "/placeholder.svg"} alt={title} />
-      </div>
-      <div className="service-title">{title}</div>
-    </div>
-  )
-}
+// Importación de imágenes
+import vehiculosSegurosImg from "../Imagenes/Rectangle 27.png"
+import gestionReservasImg from "../Imagenes/Rectangle 28.png"
+import logisticaFlotaImg from "../Imagenes/Rectangle 29.png"
+import vehiculosLimpiosImg from "../Imagenes/Rectangle 30.png"
 
 function ServicesSection() {
-  const services = [
-    {
-      id: 1,
-      image: "/placeholder.svg?height=200&width=300",
-      title: "Vehículos Seguros",
-    },
-    {
-      id: 2,
-      image: "/placeholder.svg?height=200&width=300",
-      title: "Gestión de Reservas",
-    },
-    {
-      id: 3,
-      image: "/placeholder.svg?height=200&width=300",
-      title: "Logística de Flota",
-    },
-    {
-      id: 4,
-      image: "/placeholder.svg?height=200&width=300",
-      title: "Vehículos Limpios",
-    },
-  ]
-
-  return (
-    <section className="services-section">
-      <div className="container">
-        <div className="services-header">
-          <div className="services-text">
-            <h2 className="section-title">Nuestros Servicios</h2>
-            <p className="services-description">
-              En CQTrails encuentras una amplia gama de soluciones de transporte para cualquier necesidad empresarial.
-              Ofrecemos vehículos de calidad y atención directa, sin intermediarios.
-            </p>
+    return (
+      <div className="servicios-section">
+        {/* Primera columna: Título y texto */}
+        <div className="columna-info">
+          <h2>Nuestros Servicios</h2>
+          <p>
+            En CQTrails encuentras una amplia gama de soluciones de transporte para cualquier necesidad empresarial.
+            Accede a servicios de transporte directo, sin intermediarios.
+          </p>
+  
+          {/* Tarjeta Vehículos Seguros */}
+          <div className="servicio-card">
+            <img src={vehiculosSegurosImg || "/placeholder.svg"} alt="Vehículos Seguros" />
+            <div className="servicio-label">
+              <span>Vehículos Seguros</span>
+            </div>
           </div>
         </div>
-
-        <div className="services-grid">
-          {services.map((service) => (
-            <ServiceCard key={service.id} {...service} />
-          ))}
+  
+        {/* Segunda columna: Gestión de Reservas */}
+        <div className="columna-central">
+          <div className="servicio-card card-alta">
+            <img src={gestionReservasImg || "/placeholder.svg"} alt="Gestión de Reservas" />
+            <div className="servicio-label">
+              <span>Gestión de Reservas</span>
+            </div>
+          </div>
         </div>
-
-        <div className="services-footer">
-          <a href="#contacto" className="contact-link">
-            Contáctanos <span className="arrow">→</span>
-          </a>
+  
+        {/* Tercera columna: Logística de Flota y Vehículos Limpios */}
+        <div className="columna-derecha">
+          <div className="servicio-card">
+            <img src={logisticaFlotaImg || "/placeholder.svg"} alt="Logística de Flota" />
+            <div className="servicio-label">
+              <span>Logística de Flota</span>
+            </div>
+          </div>
+  
+          <div className="servicio-card">
+            <img src={vehiculosLimpiosImg || "/placeholder.svg"} alt="Vehículos Limpios" />
+            <div className="servicio-label">
+              <span>Vehículos Limpios</span>
+            </div>
+          </div>
+  
+          <div className="contactanos-link">
+            <a href="#">
+              Contáctanos <span className="arrow">›</span>
+            </a>
+          </div>
         </div>
       </div>
-    </section>
-  )
-}
+    )
+  }
+  
+  export default ServicesSection
 
-export default ServicesSection
+
+
+
 

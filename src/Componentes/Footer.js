@@ -16,12 +16,6 @@ function Footer() {
               <li>
                 <a href="#nosotros">Nosotros</a>
               </li>
-              <li>
-                <a href="#como-funciona">Cómo Funciona</a>
-              </li>
-              <li>
-                <a href="#testimonios">Testimonios</a>
-              </li>
             </ul>
           </div>
 
@@ -29,7 +23,7 @@ function Footer() {
             <h4>Servicios</h4>
             <ul>
               <li>
-                <a href="#alquiler">Alquiler de Vehículos</a>
+                <a href="#alquiler">Reserva de Vehículos</a>
               </li>
               <li>
                 <a href="#logistica">Logística</a>
@@ -109,7 +103,7 @@ function Footer() {
 
       <div className="footer-bottom">
         <div className="container">
-          <p>ALL RIGHTS RESERVED. COPYRIGHT 2023</p>
+          <p>ALL RIGHTS RESERVED. COPYRIGHT 2025</p>
         </div>
       </div>
     </footer>

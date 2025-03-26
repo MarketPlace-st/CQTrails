@@ -36,31 +36,49 @@ function Header() {
         <div className="logo-container">
           <img src={logo || "/placeholder.svg"} alt="CQ TRAILS" className="logo" />
         </div>
-        <nav className="navigation">
-          <div className="nav-links">
-            <div className="dropdown-container">
-              <a href="#" className="nav-link dropdown-toggle" onClick={toggleDropdown}>
-                Reservaciones <span className="dropdown-arrow">{dropdownOpen ? "▲" : "▼"}</span>
+        <div className="right-section">
+          <nav className="navigation">
+            <div className="nav-links">
+              <div className="dropdown-container">
+                <a href="#" className="nav-link dropdown-toggle" onClick={toggleDropdown}>
+                  Reservaciones
+                  <span className="dropdown-arrow">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="12"
+                      height="12"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className={dropdownOpen ? "rotate-arrow" : ""}
+                    >
+                      <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                  </span>
+                </a>
+                {dropdownOpen && (
+                  <div className="dropdown-menu">
+                    <a href="#reservar" className="dropdown-item">
+                      Reservar
+                    </a>
+                    <a href="#historial" className="dropdown-item">
+                      Historial de Reservaciones
+                    </a>
+                  </div>
+                )}
+              </div>
+              <a href="#contacto" className="nav-link">
+                Contacto
               </a>
-              {dropdownOpen && (
-                <div className="dropdown-menu">
-                  <a href="#reservar" className="dropdown-item">
-                    Reservar
-                  </a>
-                  <a href="#historial" className="dropdown-item">
-                    Historial de Reservaciones
-                  </a>
-                </div>
-              )}
             </div>
-            <a href="#contacto" className="nav-link">
-              Contacto
-            </a>
+          </nav>
+          <div className="auth-buttons">
+            <button className="btn btn-login">Iniciar Sesión</button>
+            <button className="btn btn-register">Crear Cuenta</button>
           </div>
-        </nav>
-        <div className="auth-buttons">
-          <button className="btn btn-login">Iniciar Sesión</button>
-          <button className="btn btn-register">Crear Cuenta</button>
         </div>
       </div>
     </header>
@@ -68,6 +86,8 @@ function Header() {
 }
 
 export default Header
+
+
 
 
 
