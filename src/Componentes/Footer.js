@@ -109,7 +109,7 @@ function Footer() {
 
       <div className="footer-bottom">
         <div className="container">
-          <p>ALL RIGHTS RESERVED. COPYRIGHT 2023</p>
+          <p>ALL RIGHTS RESERVED. COPYRIGHT 2025</p>
         </div>
       </div>
     </footer>

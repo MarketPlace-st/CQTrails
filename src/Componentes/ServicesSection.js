@@ -1,4 +1,5 @@
 import "../Estilos/ServicesSection.css"
+import lavadero from "../Imagenes/Rectangle 30.png"
 
 function ServiceCard({ image, title }) {
   return (
@@ -30,7 +31,7 @@ function ServicesSection() {
     },
     {
       id: 4,
-      image: "/placeholder.svg?height=200&width=300",
+      image: lavadero,
       title: "Vehículos Limpios",
     },
   ]
