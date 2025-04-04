@@ -1,0 +1,189 @@
+/* Estilos base del header */
+.header-auth {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.header-auth-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-auth-logo {
+  height: 2.5rem;
+  width: auto;
+}
+
+.header-auth-right {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.header-auth-nav {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+/* Dropdown de Reservaciones */
+.header-auth-dropdown {
+  position: relative;
+}
+
+.header-auth-dropdown-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  cursor: pointer;
+  color: #333;
+  font-size: 1rem;
+  font-weight: 500;
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+.header-auth-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  left: 0;
+  background: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  min-width: 200px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.2s ease;
+  padding: 0.5rem 0;
+  z-index: 1001;
+}
+
+.header-auth-dropdown:hover .header-auth-dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.header-auth-dropdown-item {
+  display: block;
+  padding: 0.75rem 1rem;
+  color: #333;
+  text-decoration: none;
+  transition: background-color 0.2s;
+}
+
+.header-auth-dropdown-item:hover {
+  background-color: #f3f4f6;
+}
+
+/* Iconos del header */
+.header-auth-icons {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Estilos específicos para el enlace de contacto */
+.header-auth-contact {
+  text-decoration: none;
+  color: #333;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+/* Estilos específicos para el carrito */
+.cartheader-container {
+  position: relative;
+  padding: 8px;
+  border-radius: 10px;
+  background-color: #027313 !important;
+}
+
+.cart-link {
+  display: flex;
+  align-items: center;
+  color: white !important;
+  text-decoration: none;
+}
+
+/* Estilos específicos para el icono de perfil */
+.profile-container {
+  padding: 8px;
+  border-radius: 10px;
+  background-color: #027313 !important;
+}
+
+.profile-link {
+  display: flex;
+  align-items: center;
+  color: white !important;
+  text-decoration: none;
+}
+
+.cart-count {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background: white;
+  color: #09A603;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: bold;
+  border: 2px solid #09A603;
+}
+
+/* Icono de usuario */
+.header-auth-btn-icon {
+  color: #333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  border-radius: 50%;
+  transition: background-color 0.2s;
+}
+
+.header-auth-btn-icon:hover {
+  background-color: #f5f5f5;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .header-auth-container {
+    padding: 0.75rem;
+  }
+
+  .header-auth-nav {
+    gap: 1rem;
+  }
+
+  .header-auth-right {
+    gap: 1rem;
+  }
+}
+
+
+  
+  
+  
+  
+  
+  
+  
+  

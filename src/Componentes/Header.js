@@ -1,6 +1,5 @@
-"use client"
-
 import { useState, useEffect } from "react"
+import { Link, useNavigate } from "react-router-dom"
 import "../Estilos/Header.css"
 import logo from "../Imagenes/Logo.svg"
 import LoginPopUp from "./LoginPopUp"
@@ -8,10 +7,12 @@ import RegisterPopUp from "./RegisterPopUp"
 import ForgotPasswordPopUp from "./ForgotPasswordPopUp"
 
 function Header() {
+  const navigate = useNavigate()
   const [dropdownOpen, setDropdownOpen] = useState(false)
   const [isLoginOpen, setIsLoginOpen] = useState(false)
   const [isRegisterOpen, setIsRegisterOpen] = useState(false)
   const [isForgotPasswordOpen, setIsForgotPasswordOpen] = useState(false)
+  const [redirectAfterLogin, setRedirectAfterLogin] = useState(null)
 
   const toggleDropdown = (e) => {
     e.preventDefault()
@@ -19,11 +20,12 @@ function Header() {
     setDropdownOpen(!dropdownOpen)
   }
 
-  const closeDropdown = () => {
-    setDropdownOpen(false)
-  }
+  const closeDropdown = () => setDropdownOpen(false)
 
-  const handleLoginClick = () => {
+  const handleLoginClick = (redirectTo = null) => {
+    if (redirectTo) {
+      setRedirectAfterLogin(redirectTo)
+    }
     setIsLoginOpen(true)
     setIsRegisterOpen(false)
     setIsForgotPasswordOpen(false)
@@ -43,14 +45,22 @@ function Header() {
 
   const handleCloseLogin = () => {
     setIsLoginOpen(false)
+    setRedirectAfterLogin(null)
   }
 
-  const handleCloseRegister = () => {
-    setIsRegisterOpen(false)
-  }
+  const handleCloseRegister = () => setIsRegisterOpen(false)
+  const handleCloseForgotPassword = () => setIsForgotPasswordOpen(false)
 
-  const handleCloseForgotPassword = () => {
-    setIsForgotPasswordOpen(false)
+  const handleProtectedAction = (path) => {
+    // Aquí verificarías si el usuario está autenticado
+    const isAuthenticated = false // Esto debería venir de tu sistema de autenticación
+
+    if (!isAuthenticated) {
+      handleLoginClick(path)
+      return
+    }
+    
+    navigate(path)
   }
 
   useEffect(() => {
@@ -61,25 +71,29 @@ function Header() {
     }
 
     document.addEventListener("click", handleClickOutside)
-    return () => {
-      document.removeEventListener("click", handleClickOutside)
-    }
+    return () => document.removeEventListener("click", handleClickOutside)
   }, [])
 
   return (
     <>
-      <header className="header">
-        <div className="container header-container">
-          <div className="logo-container">
-            <img src={logo || "/placeholder.svg"} alt="CQ TRAILS" className="logo" />
+      <header className="cq-header">
+        <div className="cq-header__container">
+          <div className="cq-header__logo-wrapper">
+            <Link to="/">
+              <img src={logo} alt="CQ TRAILS" className="cq-header__logo" />
+            </Link>
           </div>
-          <div className="right-section">
-          <nav className="navigation">
-              <div className="nav-links">
-                <div className="dropdown-container">
-                  <a href="#" className="nav-link dropdown-toggle" onClick={toggleDropdown}>
+
+          <div className="cq-header__nav-section">
+            <nav className="cq-header__nav">
+              <div className="cq-header__nav-links">
+                <div className="cq-header__dropdown">
+                  <button 
+                    type="button" 
+                    className="cq-header__nav-button" 
+                    onClick={toggleDropdown}
+                  >
                     Reservaciones
-                  <span className="dropdown-arrow">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="12"
@@ -90,49 +104,72 @@ function Header() {
                       strokeWidth="2"
                       strokeLinecap="round"
                       strokeLinejoin="round"
-                      className={dropdownOpen ? "rotate-arrow" : ""}
+                      className={`cq-header__dropdown-icon ${
+                        dropdownOpen ? "cq-header__dropdown-icon--open" : ""
+                      }`}
                     >
-                      <polyline points="6 9 12 15 18 9"></polyline>
+                      <polyline points="6 9 12 15 18 9" />
                     </svg>
-                  </span>
-                  </a>
+                  </button>
+                  
                   {dropdownOpen && (
-                    <div className="dropdown-menu">
-                      <a href="#reservar" className="dropdown-item">
+                    <div className="cq-header__dropdown-menu">
+                      <button 
+                        onClick={() => handleProtectedAction("/reservar")} 
+                        className="cq-header__dropdown-item"
+                      >
                         Reservar
-                      </a>
-                      <a href="#historial" className="dropdown-item">
+                      </button>
+                      <button 
+                        onClick={() => handleProtectedAction("/historial")} 
+                        className="cq-header__dropdown-item"
+                      >
                         Historial de Reservaciones
-                      </a>
+                      </button>
                     </div>
                   )}
                 </div>
-                <a href="#contacto" className="nav-link">
+
+                <button 
+                  onClick={() => handleProtectedAction("/contacto")} 
+                  className="cq-header__nav-button"
+                >
                   Contacto
-                </a>
+                </button>
               </div>
             </nav>
-            <div className="auth-buttons">
-              <button className="btn btn-login" onClick={handleLoginClick}>
-              Iniciar Sesión
-            </button>
-              <button className="btn btn-register" onClick={handleRegisterClick}>
-              Crear Cuenta
-            </button>
+
+            <div className="cq-header__auth-buttons">
+              <button 
+                className="cq-header__auth-button cq-header__auth-button--login" 
+                onClick={() => handleLoginClick()}
+              >
+                Iniciar Sesión
+              </button>
+              <button 
+                className="cq-header__auth-button cq-header__auth-button--register" 
+                onClick={handleRegisterClick}
+              >
+                Crear Cuenta
+              </button>
             </div>
-        </div>
+          </div>
         </div>
       </header>
+
       <LoginPopUp 
         isOpen={isLoginOpen} 
         onClose={handleCloseLogin}
         onForgotPassword={handleForgotPasswordClick}
+        redirectAfterLogin={redirectAfterLogin}
       />
+
       <RegisterPopUp 
         isOpen={isRegisterOpen} 
         onClose={handleCloseRegister}
         onSwitchToLogin={handleLoginClick}
       />
+
       <ForgotPasswordPopUp 
         isOpen={isForgotPasswordOpen} 
         onClose={handleCloseForgotPassword}
@@ -142,6 +179,8 @@ function Header() {
 }
 
 export default Header
+
+
 
 
 
