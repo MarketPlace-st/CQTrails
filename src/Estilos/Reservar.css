@@ -1,0 +1,63 @@
+.page-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.vehicle-rental {
+  flex: 1;
+  padding-top: 100px;
+  padding-bottom: 20px;
+  background-color: #f9f9f9;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.vehicle-content {
+  display: flex;
+  gap: 30px;
+}
+
+.main-content {
+  flex: 1;
+}
+
+.reserve-more-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+
+.reserve-more-btn {
+  background-color: #09A603;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 25px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.reserve-more-btn:hover {
+  background-color: #008c44;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
