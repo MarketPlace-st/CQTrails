@@ -1,0 +1,55 @@
+.vehicle-specs {
+    padding: 20px;
+    border-top: 1px solid #eaeaea;
+  }
+  
+  .vehicle-title {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #333;
+  }
+  
+  .vehicle-description {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 20px;
+    line-height: 1.5;
+  }
+  
+  .specs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+  }
+  
+  .spec-item {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  
+  .spec-label {
+    font-size: 12px;
+    color: #666;
+  }
+  
+  .spec-value {
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+  }
+  
+  @media (max-width: 768px) {
+    .specs-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .specs-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  
