@@ -1,163 +1,149 @@
+import { Link } from "react-router-dom"
 import "../Estilos/VehicleSection.css"
 
-// Importamos logos de marcas
-import toyotaLogo from "../Imagenes/Logo Toyota.png" 
-import lexusLogo from "../Imagenes/Logo Lexus.png" 
-import hyundaiLogo from "../Imagenes/Logo Hyundai.png" 
-import rangeRoverLogo from "../Imagenes/Logo Range Rover.png"
+// Importar imágenes de vehículos
+import van from "../Imagenes/Furgoneta.png"
+import truck from "../Imagenes/CamionC.png"
+import suv from "../Imagenes/Carro Rav4.png"
+import minibus from "../Imagenes/Minibus.png"
+import sedan from "../Imagenes/CarroKia.png"
+import pickup from "../Imagenes/Camioneta.png"
+import camion from "../Imagenes/CamionLarge.png"
+import crossover from "../Imagenes/Autobus.png"
 
-// Importamos imágenes de vehículos
-import lexusES from "../Imagenes/Furgoneta.png" 
-import hyundaiSonata from "../Imagenes/CamionC.png" 
-import toyotaRAV4 from "../Imagenes/Carro Rav4.png" 
-import toyotaCamry from "../Imagenes/Minibus.png" 
-import rangeRoverSport from "../Imagenes/CarroVoltzWagen.png" 
-import toyotaRAV4_2 from "../Imagenes/Minibus1.png" 
-import toyotaCamry2 from "../Imagenes/Camioneta.png" 
-import lexusES2 from "../Imagenes/CarroKia.png" 
+// Importar logos de marcas
+import toyotaLogo from "../Imagenes/Logo Hyundai.png"
+import lexusLogo from "../Imagenes/Logo Lexus.png"
+import hyundaiLogo from "../Imagenes/Logo Toyota.png"
+import rangeLogo from "../Imagenes/Logo Range Rover.png"
 
-function VehicleCard({ image, brand, model, year, price, logo, bgColor }) {
-    return (
-      <div className={`vehicle-card ${bgColor}`}>
-        <div className="vehicle-image">
-          <img src={image || "/placeholder.svg"} alt={`${brand} ${model}`} />
+function VehicleSection() {
+  const vehicles = [
+    {
+      id: 1,
+      name: "Lexus ES 2022",
+      price: "$99.00/ day",
+      image: van,
+      logo: lexusLogo,
+      bgClass: "bg-white",
+    },
+    {
+      id: 2,
+      name: "Hyundai Sonata 2022",
+      price: "$99.00/ day",
+      image: truck,
+      logo: hyundaiLogo,
+      bgClass: "bg-mint",
+    },
+    {
+      id: 3,
+      name: "Toyota RAV 4 2020",
+      price: "$99.00/ day",
+      image: suv,
+      logo: toyotaLogo,
+      bgClass: "bg-white",
+    },
+    {
+      id: 4,
+      name: "Toyota Camry 2018",
+      price: "$99.00/ day",
+      image: minibus,
+      logo: toyotaLogo,
+      bgClass: "bg-mint",
+    },
+    {
+      id: 5,
+      name: "Range Rover 2022",
+      price: "$99.00/ day",
+      image: crossover,
+      logo: rangeLogo,
+      bgClass: "bg-mint",
+    },
+    {
+      id: 6,
+      name: "Lexus ES 2022",
+      price: "$99.00/ day",
+      image: sedan,
+      logo: lexusLogo,
+      bgClass: "bg-white",
+    },
+    {
+      id: 7,
+      name: "Toyota RAV 4 2020",
+      price: "$99.00/ day",
+      image: camion,
+      logo: toyotaLogo,
+      bgClass: "bg-mint",
+    },
+    {
+      id: 8,
+      name: "Toyota Camry 2",
+      price: "$99.00/ day",
+      image: pickup,
+      logo: toyotaLogo,
+      bgClass: "bg-white",
+    },
+  ]
+
+  return (
+    <section className="cq-vehicles">
+      <div className="cq-vehicles__container">
+        <div className="cq-vehicles__header">
+          <h2 className="cq-vehicles__title">¡Explora nuestros vehículos disponibles!</h2>
+          <Link to="/reservar" className="cq-vehicles__catalog-link">
+            Ver catálogo
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="cq-vehicles__arrow-icon"
+            >
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </Link>
         </div>
-        <div className="vehicle-info">
-          <div className="vehicle-brand">
-            <img src={logo || "/placeholder.svg"} alt={brand} className="brand-logo" />
-            <div className="vehicle-details">
-              <div className="vehicle-name">
-                {brand} {model} {year}
+
+        <div className="cq-vehicles__grid">
+          {vehicles.map((vehicle) => (
+            <div 
+              key={vehicle.id} 
+              className={`cq-vehicles__card ${vehicle.bgClass === 'bg-mint' ? 'cq-vehicles__card--mint' : 'cq-vehicles__card--white'}`}
+            >
+              <div className="cq-vehicles__image-wrapper">
+                <img 
+                  src={vehicle.image} 
+                  alt={vehicle.name} 
+                  className="cq-vehicles__image"
+                />
               </div>
-              <div className="vehicle-price">${price}/ day</div>
+              <div className="cq-vehicles__info">
+                <div className="cq-vehicles__brand">
+                  <img 
+                    src={vehicle.logo} 
+                    alt="Logo marca" 
+                    className="cq-vehicles__brand-logo"
+                  />
+                  <h3 className="cq-vehicles__name">{vehicle.name}</h3>
+                </div>
+                <p className="cq-vehicles__price">{vehicle.price}</p>
+              </div>
             </div>
-          </div>
+          ))}
         </div>
       </div>
-    )
-  }
-  
-  function VehicleSection() {
-    // Datos de ejemplo para los vehículos
-    const vehicles = [
-      {
-        id: 1,
-        image: lexusES || "/placeholder.svg?height=150&width=200",
-        brand: "Lexus",
-        model: "ES",
-        year: "2022",
-        price: "99.00",
-        logo: lexusLogo || "/placeholder.svg?height=30&width=30",
-        bgColor: "bg-white",
-      },
-      {
-        id: 2,
-        image: hyundaiSonata || "/placeholder.svg?height=150&width=200",
-        brand: "Hyundai",
-        model: "Sonata",
-        year: "2022",
-        price: "99.00",
-        logo: hyundaiLogo || "/placeholder.svg?height=30&width=30",
-        bgColor: "bg-mint",
-      },
-      {
-        id: 3,
-        image: toyotaRAV4 || "/placeholder.svg?height=150&width=200",
-        brand: "Toyota",
-        model: "RAV 4",
-        year: "2020",
-        price: "99.00",
-        logo: toyotaLogo || "/placeholder.svg?height=30&width=30",
-        bgColor: "bg-white",
-      },
-      {
-        id: 4,
-        image: toyotaCamry || "/placeholder.svg?height=150&width=200",
-        brand: "Toyota",
-        model: "Camry",
-        year: "2019",
-        price: "99.00",
-        logo: toyotaLogo || "/placeholder.svg?height=30&width=30",
-        bgColor: "bg-mint",
-      },
-      {
-        id: 5,
-        image: rangeRoverSport || "/placeholder.svg?height=150&width=200",
-        brand: "Range Rover",
-        model: "Sport",
-        year: "2022",
-        price: "99.00",
-        logo: rangeRoverLogo || "/placeholder.svg?height=30&width=30",
-        bgColor: "bg-mint",
-      },
-      {
-        id: 6,
-        image: lexusES2 || "/placeholder.svg?height=150&width=200",
-        brand: "Lexus",
-        model: "ES",
-        year: "2022",
-        price: "99.00",
-        logo: lexusLogo || "/placeholder.svg?height=30&width=30",
-        bgColor: "bg-white",
-      },
-      {
-        id: 7,
-        image: toyotaRAV4_2 || "/placeholder.svg?height=150&width=200",
-        brand: "Toyota",
-        model: "RAV 4",
-        year: "2020",
-        price: "99.00",
-        logo: toyotaLogo || "/placeholder.svg?height=30&width=30",
-        bgColor: "bg-mint",
-      },
-      {
-        id: 8,
-        image: toyotaCamry2 || "/placeholder.svg?height=150&width=200",
-        brand: "Toyota",
-        model: "Camry",
-        year: "2",
-        price: "99.00",
-        logo: toyotaLogo || "/placeholder.svg?height=30&width=30",
-        bgColor: "bg-white",
-      },
-    ]
-  
-    return (
-      <section className="vehicles-section">
-        <div className="vehicles-container">
-          <div className="section-header">
-            <h2 className="section-title">¡Explora nuestros vehículos disponibles!</h2>
-            <a href="#catalogo" className="catalog-link">
-              Ver catálogo{" "}
-              <svg
-                className="arrow-icon"
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="M5 12h14"></path>
-                <path d="M12 5l7 7-7 7"></path>
-              </svg>
-            </a>
-          </div>
-  
-          <div className="vehicles-grid">
-            {vehicles.map((vehicle) => (
-              <VehicleCard key={vehicle.id} {...vehicle} />
-            ))}
-          </div>
-        </div>
-      </section>
-    )
-  }
-  
-  export default VehicleSection
+    </section>
+  )
+}
+
+export default VehicleSection
+
+
 
 
 

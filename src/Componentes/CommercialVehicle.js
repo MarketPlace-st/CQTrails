@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import "../Estilos/CommercialVehicles.css"
 
 // Importamos las imágenes de los vehículos
@@ -14,7 +15,7 @@ function CommercialVehicles() {
       <div className="commercial-container">
         <div className="section-header">
           <h2 className="commercialVehicle-title">Vehículos Comerciales</h2>
-          <a href="#mas-comerciales" className="view-more">
+          <Link to="/reservar" className="view-more">
             Ver más{" "}
             <svg
               className="arrow-icon"
@@ -31,7 +32,7 @@ function CommercialVehicles() {
               <path d="M5 12h14"></path>
               <path d="M12 5l7 7-7 7"></path>
             </svg>
-          </a>
+          </Link>
         </div>
 
         <div className="commercial-grid">

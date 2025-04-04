@@ -1,146 +1,153 @@
-.vehicles-section {
-    background-color: white;
-    padding: 0;
-    margin: 0;
-    width: 100%;
+.cq-vehicles {
+  padding: 40px 0;
+  background-color: #ffffff;
+}
+
+.cq-vehicles__container {
+  max-width: 1200px;
+  margin: 0 auto;
+  margin-top: 50px;
+  margin-bottom: 30px;
+  padding: 0 20px;
+}
+
+.cq-vehicles__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+.cq-vehicles__title {
+  font-size: 24px;
+  font-weight: 600;
+  color: #000000;
+  margin: 0;
+}
+
+.cq-vehicles__catalog-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #000000;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.cq-vehicles__catalog-link:hover {
+  color: #027313;
+}
+
+.cq-vehicles__arrow-icon {
+  transition: transform 0.2s ease;
+}
+
+.cq-vehicles__catalog-link:hover .cq-vehicles__arrow-icon {
+  transform: translateX(4px);
+}
+
+.cq-vehicles__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.cq-vehicles__card {
+  border-radius: 24px;
+  padding: 20px;
+  transition: transform 0.2s ease;
+  cursor: pointer;
+}
+
+.cq-vehicles__card:hover {
+  transform: translateY(-4px);
+}
+
+.cq-vehicles__card--white {
+  background-color: #f8f8f8;
+}
+
+.cq-vehicles__card--mint {
+  background-color: #f2f8f3;
+}
+
+.cq-vehicles__image-wrapper {
+  height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.cq-vehicles__image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.cq-vehicles__info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.cq-vehicles__brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cq-vehicles__brand-logo {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+.cq-vehicles__name {
+  font-size: 14px;
+  font-weight: 500;
+  color: #000000;
+  margin: 0;
+}
+
+.cq-vehicles__price {
+  color: #027313;
+  font-size: 14px;
+  font-weight: 600;
+  margin: 0;
+}
+
+@media (max-width: 1200px) {
+  .cq-vehicles__grid {
+    grid-template-columns: repeat(3, 1fr);
   }
-  
-  .vehicles-container {
-    background-color: white;
-    border-radius: 20px;
-    padding: 30px 20px;
-    max-width: 1400px;
-    margin: 0 auto 30px;
-    border: 1px solid #e0e0e0;
+}
+
+@media (max-width: 992px) {
+  .cq-vehicles__grid {
+    grid-template-columns: repeat(2, 1fr);
   }
-  
-  .section-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 30px;
+}
+
+@media (max-width: 576px) {
+  .cq-vehicles__grid {
+    grid-template-columns: 1fr;
   }
-  
-  .section-title {
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: #000;
-    margin: 0;
-  }
-  
-  .catalog-link {
-    color: #000;
-    text-decoration: none;
-    font-weight: 500;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-  }
-  
-  .arrow-icon {
-    transition: transform 0.3s ease;
-  }
-  
-  .catalog-link:hover .arrow-icon {
-    transform: translateX(5px);
-  }
-  
-  .vehicles-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-  }
-  
-  .vehicle-card {
-    border-radius: 12px;
-    overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-  }
-  
-  .vehicle-card.bg-white {
-    background-color: #f5f5f5;
-  }
-  
-  .vehicle-card.bg-mint {
-    background-color: #e6f7e9;
-  }
-  
-  .vehicle-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-  }
-  
-  .vehicle-image {
-    height: 180px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 15px;
-  }
-  
-  .vehicle-image img {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
-  }
-  
-  .vehicle-info {
-    padding: 15px;
-    background-color: white;
-    border-top: 1px solid #eee;
-  }
-  
-  .vehicle-brand {
-    display: flex;
+
+  .cq-vehicles__header {
+    flex-direction: column;
     align-items: flex-start;
+    gap: 12px;
   }
-  
-  .brand-logo {
-    width: 50px;
-    height: auto;
-    margin-right: 15px;
-    object-fit: contain;
+
+  .cq-vehicles__container {
+    padding: 0 16px;
   }
-  
-  .vehicle-details {
-    flex: 1;
-  }
-  
-  .vehicle-name {
-    font-weight: 600;
-    color: #333;
-    margin-bottom: 5px;
-  }
-  
-  .vehicle-price {
-    color: #008f39;
-    font-weight: 700;
-  }
-  
-  @media (max-width: 1200px) {
-    .vehicles-grid {
-      grid-template-columns: repeat(3, 1fr);
-    }
-  }
-  
-  @media (max-width: 992px) {
-    .vehicles-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-  
-  @media (max-width: 576px) {
-    .vehicles-grid {
-      grid-template-columns: 1fr;
-    }
-  
-    .section-header {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 10px;
-    }
-  }
+}
+
+
   
   
   
