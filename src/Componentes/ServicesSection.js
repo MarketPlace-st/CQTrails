@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import "../Estilos/ServicesSection.css"
 
 // Importación de imágenes
@@ -53,9 +54,9 @@ function ServicesSection() {
           </div>
   
           <div className="contactanos-link">
-            <a href="#">
+            <Link to="/contacto">
               Contáctanos <span className="arrow">›</span>
-            </a>
+            </Link>
           </div>
         </div>
       </div>
