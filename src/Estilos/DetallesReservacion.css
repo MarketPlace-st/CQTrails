@@ -1,0 +1,307 @@
+.detalles-reservacion-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #f8f9fa;
+  }
+  
+  .detalles-reservacion-content {
+    flex: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    padding: 40px;
+    margin-top: 80px;
+    margin-bottom: 70px;
+  }
+  
+  .reservacion-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+  }
+  
+  .reservacion-info h1 {
+    font-size: 28px;
+    font-weight: 600;
+    color: #333;
+    margin: 0;
+  }
+  
+  .reservacion-id {
+    font-size: 16px;
+    color: #666;
+    margin-top: 4px;
+    display: block;
+  }
+  
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  
+  .estado-badge {
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  
+  .estado-badge.aprobada {
+    background-color: #e6f4ea;
+    color: #0d904f;
+  }
+  
+  .estado-badge.pendiente {
+    background-color: #fff8e1;
+    color: #f9a825;
+  }
+  
+  .estado-badge.denegada {
+    background-color: #fde7e9;
+    color: #d93025;
+  }
+  
+  .content-grid {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 30px;
+  }
+  
+  .info-section {
+    background: white;
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  }
+  
+  .info-section h2 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    margin: 0 0 20px 0;
+  }
+  
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  
+  .info-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  
+  .info-label {
+    font-size: 14px;
+    color: #666;
+  }
+  
+  .info-value {
+    font-size: 15px;
+    color: #333;
+    font-weight: 500;
+  }
+  
+  .vehiculos-section {
+    background: white;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  }
+  
+  .vehiculos-section h2 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    margin: 0 0 20px 0;
+  }
+  
+  .vehiculo-card {
+    border-bottom: 1px solid #eee;
+    padding: 20px 0;
+  }
+  
+  .vehiculo-card:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+  
+  .vehiculo-info {
+    display: grid;
+    grid-template-columns: auto 1fr auto auto;
+    gap: 24px;
+    align-items: center;
+  }
+  
+  .vehiculo-imagen {
+    width: 100px;
+    height: 70px;
+    background-color: #027313;
+    background-image: url("../Imagenes/pattern.svg");
+    background-size: cover;
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .vehiculo-imagen img {
+    width: 85%;
+    height: 85%;
+    object-fit: contain;
+  }
+  
+  .vehiculo-detalles h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    margin: 0 0 4px 0;
+  }
+  
+  .vehiculo-tipo {
+    font-size: 14px;
+    color: #666;
+    margin: 0 0 12px 0;
+  }
+  
+  .fechas-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  
+  .fecha-grupo {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  
+  .fecha-label {
+    font-size: 12px;
+    color: #666;
+  }
+  
+  .fecha-valor {
+    font-size: 14px;
+    color: #333;
+    font-weight: 500;
+  }
+  
+  .hora-valor {
+    font-size: 12px;
+    color: #666;
+  }
+  
+  .vehiculo-cantidad,
+  .vehiculo-precio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+  
+  .cantidad-label,
+  .precio-label {
+    font-size: 12px;
+    color: #666;
+  }
+  
+  .cantidad-valor {
+    font-size: 16px;
+    color: #333;
+    font-weight: 500;
+  }
+  
+  .precio-valor {
+    font-size: 16px;
+    color: #09A603;
+    font-weight: 600;
+  }
+  
+  @media (max-width: 1024px) {
+    .content-grid {
+      grid-template-columns: 1fr;
+    }
+  
+    .info-grid {
+      grid-template-columns: 1fr;
+    }
+  
+    .vehiculo-info {
+      grid-template-columns: auto 1fr;
+      gap: 16px;
+    }
+  
+    .vehiculo-cantidad,
+    .vehiculo-precio {
+      margin-top: 12px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .detalles-reservacion-content {
+      padding: 20px;
+    }
+  
+    .reservacion-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 16px;
+    }
+  
+    .header-actions {
+      width: 100%;
+      flex-direction: column;
+      gap: 12px;
+    }
+  
+    .download-button {
+      width: 100%;
+      justify-content: center;
+    }
+  
+    .vehiculo-imagen {
+      width: 80px;
+      height: 60px;
+    }
+  }
+  
+  .actions-container {
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .download-button-filled {
+    padding: 8px 20px;
+    background-color: #09A603;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .download-button-filled:hover {
+    background-color: #078902;
+    transform: translateY(-1px);
+  }
+  
+  
+  
+  
+  
+  

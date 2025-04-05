@@ -8,6 +8,8 @@ import AgregarReserva from "./Pages/AgregarReserva"
 import HistorialReservaciones from "./Pages/HistorialReservaciones"
 import MiCarrito from "./Pages/MiCarrito"
 import DetallesReservacion from "./Pages/DetallesReservacion"
+import Contacto from "./Pages/Contacto"
+import Perfil from "./Pages/Perfil"
 
 // Componente para proteger rutas
 const ProtectedRoute = ({ children }) => {
@@ -62,7 +64,15 @@ function App() {
             path="/contacto" 
             element={
               <ProtectedRoute>
-                <div>Página de Contacto</div>
+                <Contacto/>
+              </ProtectedRoute>
+            } 
+          />
+          <Route 
+            path="/perfil" 
+            element={
+              <ProtectedRoute>
+                <Perfil />
               </ProtectedRoute>
             } 
           />

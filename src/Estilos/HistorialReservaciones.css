@@ -1,0 +1,239 @@
+.historial-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #f8f9fa;
+  }
+  
+  .historial-content {
+    flex: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    padding: 40px;
+    margin-top: 80px;
+    margin-bottom: 70px;
+  }
+  
+  .page-title {
+    color: #333;
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 30px;
+  }
+  
+  .filter-search-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    gap: 20px;
+  }
+  
+  .search-container {
+    position: relative;
+    flex: 1;
+    max-width: 500px;
+  }
+  
+  .search-input {
+    width: 100%;
+    padding: 12px 45px;
+    border: none;
+    border-radius: 12px;
+    font-size: 15px;
+    color: #333;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+  }
+  
+  .search-input:focus {
+    outline: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .search-icon {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #09A603;
+  }
+  
+  .select-container {
+    position: relative;
+    min-width: 200px;
+  }
+  
+  .period-select {
+    width: 100%;
+    padding: 12px 40px 12px 20px;
+    border: none;
+    border-radius: 12px;
+    background-color: white;
+    font-size: 15px;
+    color: #333;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+  
+  .period-select:focus {
+    outline: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .select-icon {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #09A603;
+    pointer-events: none;
+  }
+  
+  .reservations-table-container {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+  }
+  
+  .reservations-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+  }
+  
+  .reservations-table th {
+    background-color: white;
+    padding: 20px;
+    text-align: left;
+    font-weight: 600;
+    color: #333;
+    font-size: 14px;
+    text-transform: uppercase;
+    border-bottom: 2px solid #f0f0f0;
+  }
+  
+  .reservations-table td {
+    padding: 20px;
+    border-bottom: 1px solid #f0f0f0;
+    color: #333;
+  }
+  
+  .reservations-table tr:hover {
+    background-color: #f8f9fa;
+  }
+  
+  .status-badge {
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 500;
+  }
+  
+  .status-approved {
+    background-color: #e6f4ea;
+    color: #0d904f;
+  }
+  
+  .status-denied {
+    background-color: #fde7e9;
+    color: #d93025;
+  }
+  
+  .status-pending {
+    background-color: #fff8e1;
+    color: #f9a825;
+  }
+  
+  .actions-cell {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .action-button {
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: center;
+    min-width: 120px;
+  }
+  
+  .view-button {
+    background-color: #09A603;
+    color: white;
+    border: none;
+  }
+  
+  .view-button:hover {
+    background-color: #078902;
+    transform: translateY(-1px);
+  }
+  
+  .download-button {
+    background-color: white;
+    color: #09A603;
+    border: 2px solid #09A603;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .download-button:hover {
+    background-color: #f5f5f5;
+    transform: translateY(-1px);
+  }
+  
+  .download-button-outline {
+    background-color: white;
+    color: #09A603;
+    border: 2px solid #09A603;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .download-button-outline:hover {
+    background-color: #f5f5f5;
+    transform: translateY(-1px);
+  }
+  
+  @media (max-width: 768px) {
+    .historial-content {
+      padding: 20px;
+    }
+  
+    .filter-search-container {
+      flex-direction: column;
+      align-items: stretch;
+    }
+  
+    .search-container {
+      max-width: none;
+    }
+  
+    .actions-cell {
+      flex-direction: column;
+    }
+  
+    .action-button {
+      width: 100%;
+    }
+  
+    .select-container {
+      width: 100%;
+    }
+  }
+  
+  
+  
+  
