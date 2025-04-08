@@ -2,9 +2,9 @@ import { useState, useEffect } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import "../Estilos/Header.css"
 import logo from "../Imagenes/Logo.svg"
-import LoginPopUp from "./LoginPopUp"
-import RegisterPopUp from "./RegisterPopUp"
-import ForgotPasswordPopUp from "./ForgotPasswordPopUp"
+import LoginPopUp from "./Auth/LoginPopUp"
+import RegisterPopUp from "./Auth/RegisterPopUp"
+import ForgotPasswordPopUp from "./Auth/ForgotPasswordPopUp"
 
 function Header({ onLoginClick }) {
   const navigate = useNavigate()
