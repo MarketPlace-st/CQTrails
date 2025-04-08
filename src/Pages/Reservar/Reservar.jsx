@@ -1,5 +1,4 @@
-import { useState, useEffect } from "react"
-import { useNavigate } from "react-router-dom"
+import { useState, useEffect, useCallback } from "react"
 import HeaderAuthenticated from "../../Componentes/HeaderAuthenticated"
 import Header from "../../Componentes/Header"
 import Sidebar from "./ComponentesReservar/SideBar"
@@ -16,7 +15,6 @@ import bus from "../../Imagenes/Autobus.png"
 import ambulance from "../../Imagenes/Ambulancia.png"
 
 function Reservar() {
-  const navigate = useNavigate()
   const isAuthenticated = localStorage.getItem("auth") === "true"
 
   // Datos iniciales de vehículos
@@ -96,7 +94,7 @@ function Reservar() {
   })
 
   // Función para aplicar todos los filtros
-  const applyFilters = () => {
+  const applyFilters = useCallback(() => {
     let filtered = [...vehicles]
 
     // Filtro por tipo
@@ -138,12 +136,12 @@ function Reservar() {
     }
 
     setFilteredVehicles(filtered)
-  }
+  }, [filters, vehicles])
 
   // Aplicar filtros cuando cambien
   useEffect(() => {
     applyFilters()
-  }, [filters, vehicles])
+  }, [filters, vehicles, applyFilters])
 
   const handleFilterChange = (filterType, value) => {
     setFilters(prev => ({
