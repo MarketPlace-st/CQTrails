@@ -4,7 +4,7 @@ import { XIcon, Eye, EyeOff } from "lucide-react";
 import "../Estilos/auth.css";
 import logo from "../Imagenes/Logo.svg";
 
-function LoginPopUp({ isOpen, onClose, onForgotPassword }) {
+function LoginPopUp({ isOpen, onClose, onForgotPassword, onLoginSuccess }) {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
@@ -54,8 +54,14 @@ function LoginPopUp({ isOpen, onClose, onForgotPassword }) {
     e.preventDefault();
     if (validateForm()) {
       localStorage.setItem("auth", "true");
-      onClose();
-      navigate("/home-auth");
+      
+      // Si existe un callback de login exitoso, ejecutarlo
+      if (onLoginSuccess) {
+        onLoginSuccess();
+      } else {
+        onClose();
+        navigate("/home-auth");
+      }
     }
   };
 

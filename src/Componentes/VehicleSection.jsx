@@ -90,22 +90,8 @@ function VehicleSection() {
       <div className="cq-vehicles__container">
         <div className="cq-vehicles__header">
           <h2 className="cq-vehicles__title">¡Explora nuestros vehículos disponibles!</h2>
-          <Link to="/reservar" className="cq-vehicles__catalog-link">
-            Ver catálogo
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="cq-vehicles__arrow-icon"
-            >
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg>
+          <Link to="/" className="cq-vehicles__catalog-link">
+            Ver todos los vehículos
           </Link>
         </div>
 

@@ -1,20 +1,50 @@
 "use client"
 
-import { useState, useEffect } from 'react'
-import { Link } from "react-router-dom"
+import { useState, useEffect, useRef } from 'react'
+import { Link, useNavigate } from "react-router-dom"
 import CartPreview from './CartPreview'
 import "../Estilos/HeaderAuthenticated.css"
 import logo from "../Imagenes/Logo.svg"
-import { ChevronDown, Car, User } from "lucide-react"
+import { ChevronDown, Car, User, LogOut } from "lucide-react"
 
 function HeaderAuthenticated() {
+  const navigate = useNavigate()
   const [showCartPreview, setShowCartPreview] = useState(false)
+  const [showProfileDropdown, setShowProfileDropdown] = useState(false)
   const [cartItems, setCartItems] = useState([])
+  const profileRef = useRef(null)
+  const dropdownRef = useRef(null)
 
   useEffect(() => {
     const savedCart = JSON.parse(localStorage.getItem('cart')) || []
     setCartItems(savedCart)
   }, [])
+
+  // Cerrar el dropdown cuando se hace clic fuera de él
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (profileRef.current && 
+          !profileRef.current.contains(event.target) && 
+          dropdownRef.current && 
+          !dropdownRef.current.contains(event.target)) {
+        setShowProfileDropdown(false)
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [profileRef, dropdownRef])
+
+  const handleLogout = () => {
+    localStorage.removeItem("auth")
+    navigate("/")
+  }
+
+  const toggleProfileDropdown = () => {
+    setShowProfileDropdown(!showProfileDropdown)
+  }
 
   return (
     <div className="header-auth">
@@ -56,10 +86,33 @@ function HeaderAuthenticated() {
               </Link>
               <CartPreview items={cartItems} isVisible={showCartPreview} />
             </div>
-            <div className="profile-container">
-              <Link to="/perfil" className="profile-link">
-                <User size={24} />
-              </Link>
+            <div className="profile-dropdown-container">
+              <div 
+                ref={profileRef}
+                className="profile-container" 
+                onClick={toggleProfileDropdown}
+                onMouseEnter={() => setShowProfileDropdown(true)}
+              >
+                <div className="profile-link">
+                  <User size={24} />
+                </div>
+              </div>
+              {showProfileDropdown && (
+                <div 
+                  ref={dropdownRef}
+                  className="profile-dropdown" 
+                  onMouseEnter={() => setShowProfileDropdown(true)}
+                  onMouseLeave={() => setShowProfileDropdown(false)}
+                >
+                  <Link to="/perfil" className="profile-dropdown-item">
+                    Mi Perfil
+                  </Link>
+                  <button className="profile-dropdown-item logout-button" onClick={handleLogout}>
+                    <LogOut size={18} />
+                    Cerrar Sesión
+                  </button>
+                </div>
+              )}
             </div>
           </div>
         </div>

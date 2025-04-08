@@ -14,6 +14,8 @@
     width: 100%;
     padding: 20px;
     gap: 24px;
+    margin-top: 100px;
+    margin-bottom: 60px;
   }
   
   /* Barra lateral */
@@ -74,7 +76,7 @@
   
   .sidebar-item.active {
     background-color: #e6f7ef;
-    color: #00a651;
+    color: #09A603;
   }
   
   .sidebar-item.delete {
@@ -95,7 +97,7 @@
   
   /* Hero section del perfil (similar a contactanos) */
   .perfil-hero {
-    background-color: #00a651;
+    background-color: #027313;
     background-image: url("../Imagenes/pattern.svg");
     background-size: cover;
     color: white;
@@ -130,15 +132,16 @@
     overflow: hidden;
   }
   
-  .section-header {
+  .sectionperfil-header {
     padding: 16px 20px;
     border-bottom: 1px solid #f0f0f0;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 10px;
   }
   
-  .section-header h2 {
+  .sectionperfil-header h2 {
     font-size: 18px;
     font-weight: 600;
     color: #333;
@@ -151,7 +154,7 @@
     gap: 6px;
     background: none;
     border: none;
-    color: #00a651;
+    color: #09A603;
     font-size: 14px;
     font-weight: 500;
     cursor: pointer;
@@ -166,7 +169,7 @@
   
   .ver-todas {
     font-size: 14px;
-    color: #00a651;
+    color: #09A603;
     text-decoration: none;
     font-weight: 500;
   }
@@ -242,38 +245,44 @@
   
   .form-actions {
     display: flex;
-    justify-content: flex-end;
-    gap: 12px;
-    margin-top: 8px;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 24px;
   }
   
   .cancel-button,
   .save-button {
-    padding: 10px 20px;
-    border-radius: 4px;
-    font-size: 14px;
-    font-weight: 500;
+    padding: 12px 24px;
+    border-radius: 50px;
+    font-size: 15px;
+    font-weight: 600;
     cursor: pointer;
+    transition: all 0.2s ease;
+    min-width: 160px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
   }
   
   .cancel-button {
     background-color: white;
-    color: #666;
-    border: 1px solid #e0e0e0;
+    color: #09A603;
+    border: 2px solid #09A603;
   }
   
   .cancel-button:hover {
     background-color: #f5f5f5;
+    border-color: #09A603;
   }
   
   .save-button {
-    background-color: #00a651;
+    background-color: #09A603;
     color: white;
     border: none;
   }
   
   .save-button:hover {
-    background-color: #008c44;
+    background-color: #078902;
+    box-shadow: 0 4px 8px rgba(9, 166, 3, 0.2);
   }
   
   /* Reemplazar los estilos existentes del historial de reservaciones con estos nuevos estilos */
@@ -307,7 +316,7 @@
     width: 40px;
     height: 40px;
     background-color: #e6f7ef;
-    color: #00a651;
+    color: #09A603;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -438,6 +447,293 @@
     .info-label {
       width: 100%;
     }
+  }
+  
+  /* Estilos para la tabla de reservaciones del historial */
+  .reservations-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    table-layout: fixed;
+  }
+  
+  .reservations-table th {
+    background-color: white;
+    padding: 16px 20px;
+    text-align: left;
+    font-weight: 600;
+    color: #333;
+    font-size: 14px;
+    text-transform: uppercase;
+    border-bottom: 2px solid #f0f0f0;
+  }
+  
+  .reservations-table td {
+    padding: 18px 20px;
+    border-bottom: 1px solid #f0f0f0;
+    color: #333;
+    font-size: 14px;
+    transition: all 0.2s ease;
+  }
+  
+  .reservations-table tr:nth-child(even) {
+    background-color: #f8fbff;
+  }
+  
+  .reservations-table tr:hover {
+    background-color: #f5f9ff;
+  }
+  
+  .status-badge {
+    display: inline-block;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 500;
+    text-align: center;
+  }
+  
+  .status-approved {
+    background-color: #e6f4ea;
+    color: #0d904f;
+  }
+  
+  .status-pending {
+    background-color: #fff8e1;
+    color: #f9a825;
+  }
+  
+  .status-denied {
+    background-color: #fde7e9;
+    color: #d93025;
+  }
+  
+  /* Estilos para la celda de vehículo con imagen */
+  .vehicle-cell {
+    min-width: 180px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  
+  .vehicle-img-container {
+    width: 60px;
+    height: 45px;
+    background-color: #027313;
+    background-image: url("../Imagenes/pattern.svg");
+    background-size: cover;
+    border-radius: 6px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  
+  .vehicle-thumbnail {
+    width: 85%;
+    height: 85%;
+    object-fit: contain;
+  }
+  
+  .vehicleperfil-info {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .vehicle-name {
+    font-weight: 500;
+    color: #333;
+  }
+  
+  .vehicle-type {
+    font-size: 12px;
+    color: #666;
+    margin-top: 2px;
+  }
+  
+  
+  /* Estilos para la lista de reservaciones sin títulos */
+  .reservaciones-lista {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .reservacion-item {
+    padding: 20px 0;
+    border-bottom: 1px solid #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .reservacion-item:last-child {
+    border-bottom: none;
+  }
+  
+  .reservacion-info {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    flex: 1;
+  }
+  
+  .reservacion-fecha {
+    min-width: 120px;
+    font-size: 14px;
+    color: #666;
+  }
+  
+  .reservacion-detalles {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-left: auto;
+  }
+  
+  .reservacion-total {
+    font-weight: 500;
+    color: #333;
+    font-size: 15px;
+  }
+  
+  .reservacion-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #09A603;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+    margin-left: 16px;
+    background-color: rgba(9, 166, 3, 0.1);
+  }
+  
+  .reservacion-arrow:hover {
+    background-color: rgba(9, 166, 3, 0.2);
+    transform: translateX(3px);
+    box-shadow: 0 2px 8px rgba(9, 166, 3, 0.15);
+  }
+  
+  /* Modificar el diseño de status-badge para este nuevo diseño */
+  .reservacion-detalles .status-badge {
+    padding: 6px 14px;
+    font-size: 12px;
+  }
+  
+  /* Responsive para la lista de reservaciones */
+  @media (max-width: 768px) {
+    .reservacion-info {
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    
+    .vehicle-cell {
+      order: 1;
+      width: 100%;
+      margin-bottom: 10px;
+    }
+    
+    .reservacion-fecha {
+      order: 2;
+      width: 50%;
+    }
+    
+    .reservacion-detalles {
+      order: 3;
+      margin-left: 0;
+      justify-content: flex-end;
+      width: 50%;
+    }
+  }
+  
+  /* Ajuste para pantallas pequeñas */
+  @media (max-width: 480px) {
+    .reservacion-info {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 15px;
+    }
+    
+    .vehicle-cell, 
+    .reservacion-fecha, 
+    .reservacion-detalles {
+      width: 100%;
+      order: initial;
+    }
+    
+    .reservacion-detalles {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .reservacion-item {
+      padding: 16px 0;
+    }
+  }
+  
+  /* Estilos para los campos de contraseña */
+  .password-group {
+    position: relative;
+  }
+  
+  .password-input-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  
+  .password-input-container input {
+    width: 100%;
+  }
+  
+  .toggle-password {
+    position: absolute;
+    right: 12px;
+    background: none;
+    border: none;
+    color: #666;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s;
+  }
+  
+  .toggle-password:hover {
+    color: #09A603;
+  }
+  
+  .password-hint {
+    display: block;
+    font-size: 12px;
+    color: #666;
+    margin-top: 6px;
+  }
+  
+  /* Mensajes de error y éxito */
+  .error-message, 
+  .success-message {
+    margin-bottom: 20px;
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+  }
+  
+  .error-message {
+    background-color: #fdecea;
+    color: #d93025;
+    border-left: 3px solid #d93025;
+  }
+  
+  .success-message {
+    background-color: #e6f4ea;
+    color: #0d904f;
+    border-left: 3px solid #0d904f;
   }
   
   

@@ -1,4 +1,5 @@
 import { useState } from "react"
+import Header from "../Componentes/Header"
 import HeaderAuthenticated from "../Componentes/HeaderAuthenticated"
 import Footer from "../Componentes/Footer"
 import "../Estilos/Contacto.css"
@@ -13,6 +14,7 @@ export default function Contacto() {
   })
 
   const [enviado, setEnviado] = useState(false)
+  const isAuthenticated = localStorage.getItem("auth") === "true"
 
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -42,7 +44,7 @@ export default function Contacto() {
 
   return (
     <div className="contacto-container">
-      <HeaderAuthenticated />
+      {isAuthenticated ? <HeaderAuthenticated /> : <Header />}
 
       <main className="contacto-content">
         <section className="contacto-hero">

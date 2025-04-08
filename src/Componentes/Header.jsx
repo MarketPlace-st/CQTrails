@@ -6,7 +6,7 @@ import LoginPopUp from "./LoginPopUp"
 import RegisterPopUp from "./RegisterPopUp"
 import ForgotPasswordPopUp from "./ForgotPasswordPopUp"
 
-function Header() {
+function Header({ onLoginClick }) {
   const navigate = useNavigate()
   const [dropdownOpen, setDropdownOpen] = useState(false)
   const [isLoginOpen, setIsLoginOpen] = useState(false)
@@ -23,6 +23,10 @@ function Header() {
   const closeDropdown = () => setDropdownOpen(false)
 
   const handleLoginClick = (redirectTo = null) => {
+    if (onLoginClick) {
+      onLoginClick()
+      return
+    }
     if (redirectTo) {
       setRedirectAfterLogin(redirectTo)
     }
@@ -51,15 +55,11 @@ function Header() {
   const handleCloseRegister = () => setIsRegisterOpen(false)
   const handleCloseForgotPassword = () => setIsForgotPasswordOpen(false)
 
-  const handleProtectedAction = (path) => {
-    // Aquí verificarías si el usuario está autenticado
-    const isAuthenticated = false // Esto debería venir de tu sistema de autenticación
-
-    if (!isAuthenticated) {
+  const handleNavigation = (path, requiresAuth = false) => {
+    if (requiresAuth) {
       handleLoginClick(path)
       return
     }
-    
     navigate(path)
   }
 
@@ -114,14 +114,11 @@ function Header() {
                   
                   {dropdownOpen && (
                     <div className="cq-header__dropdown-menu">
+                      <Link to="/" className="cq-header__dropdown-item">
+                        Ver todos los vehículos
+                      </Link>
                       <button 
-                        onClick={() => handleProtectedAction("/reservar")} 
-                        className="cq-header__dropdown-item"
-                      >
-                        Reservar
-                      </button>
-                      <button 
-                        onClick={() => handleProtectedAction("/historial")} 
+                        onClick={() => handleNavigation("/historial", true)} 
                         className="cq-header__dropdown-item"
                       >
                         Historial de Reservaciones
@@ -130,12 +127,9 @@ function Header() {
                   )}
                 </div>
 
-                <button 
-                  onClick={() => handleProtectedAction("/contacto")} 
-                  className="cq-header__nav-button"
-                >
+                <Link to="/contacto" className="cq-header__nav-button">
                   Contacto
-                </button>
+                </Link>
               </div>
             </nav>
 
@@ -157,23 +151,27 @@ function Header() {
         </div>
       </header>
 
-      <LoginPopUp 
-        isOpen={isLoginOpen} 
-        onClose={handleCloseLogin}
-        onForgotPassword={handleForgotPasswordClick}
-        redirectAfterLogin={redirectAfterLogin}
-      />
+      {!onLoginClick && (
+        <>
+          <LoginPopUp 
+            isOpen={isLoginOpen} 
+            onClose={handleCloseLogin}
+            onForgotPassword={handleForgotPasswordClick}
+            redirectAfterLogin={redirectAfterLogin}
+          />
 
-      <RegisterPopUp 
-        isOpen={isRegisterOpen} 
-        onClose={handleCloseRegister}
-        onSwitchToLogin={handleLoginClick}
-      />
+          <RegisterPopUp 
+            isOpen={isRegisterOpen} 
+            onClose={handleCloseRegister}
+            onSwitchToLogin={handleLoginClick}
+          />
 
-      <ForgotPasswordPopUp 
-        isOpen={isForgotPasswordOpen} 
-        onClose={handleCloseForgotPassword}
-      />
+          <ForgotPasswordPopUp 
+            isOpen={isForgotPasswordOpen} 
+            onClose={handleCloseForgotPassword}
+          />
+        </>
+      )}
     </>
   )
 }

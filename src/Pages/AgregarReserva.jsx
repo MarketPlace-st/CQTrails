@@ -17,9 +17,9 @@ export default function AgregarReserva() {
   useEffect(() => {
     const vehicleData = JSON.parse(localStorage.getItem('selectedVehicle'))
     if (vehicleData) {
-      // Formatear los datos del vehículo para mostrarlos
+      // Mantener la estructura original del vehículo y añadir propiedades adicionales
       setSelectedVehicle({
-        id: vehicleData.id,
+        ...vehicleData,
         name: `${vehicleData.brand} ${vehicleData.model}`,
         description: `${vehicleData.brand} ${vehicleData.model} ${vehicleData.year} - ${vehicleData.type.charAt(0).toUpperCase() + vehicleData.type.slice(1)}`,
         specs: [
@@ -28,10 +28,7 @@ export default function AgregarReserva() {
           { label: "Transmisión", value: vehicleData.transmission },
           { label: "Año", value: vehicleData.year },
           { label: "Disponibilidad", value: "20" },
-        ],
-        price: vehicleData.price,
-        image: vehicleData.image,
-        type: vehicleData.type
+        ]
       })
     }
   }, [vehicleId])

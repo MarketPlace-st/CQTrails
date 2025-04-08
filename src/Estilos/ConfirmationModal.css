@@ -56,9 +56,9 @@
   background-color: #078902;
 }
 
-.cancel-button {
+.cancelmodals-button {
   padding: 10px 20px;
-  background-color: white;
+  background-color: transparent;
   color: #09A603;
   border: 2px solid #09A603;
   border-radius: 25px;
@@ -68,7 +68,7 @@
 }
 
 .cancel-button:hover {
-  background-color: #f5f5f5;
+  background-color: rgba(9, 166, 3, 0.1);
 }
 
 .success-text {

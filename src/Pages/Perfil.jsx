@@ -5,11 +5,35 @@ import { Link } from "react-router-dom"
 import HeaderAuthenticated from "../Componentes/HeaderAuthenticated"
 import Footer from "../Componentes/Footer"
 import "../Estilos/Perfil.css"
-import { User, Edit, Lock, LogOut, Trash2, ChevronRight, Car } from "lucide-react"
+import { User, Edit, Lock, LogOut, Trash2, ChevronRight, ArrowRight } from "lucide-react"
+import ConfirmationModal from "../Componentes/ConfirmationModal"
+import LoginPopUp from "../Componentes/LoginPopUp"
+
+// Importar imágenes de vehículos
+import furgoneta1 from "../Imagenes/Furgoneta.png"
+import furgoneta2 from "../Imagenes/Camioneta.png"
+import furgoneta3 from "../Imagenes/Minibus.png"
+
+// Mapeo de tipos de vehículos a imágenes
+const vehicleImages = {
+  "Furgoneta": furgoneta1,
+  "Camioneta": furgoneta2,
+  "Minibus": furgoneta3,
+  "SUV": furgoneta2
+}
 
 export default function Perfil() {
   // Estado para manejar el modo de edición
   const [editMode, setEditMode] = useState(false)
+  
+  // Estado para el modal de confirmación de eliminar cuenta
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false)
+  
+  // Estado para el modal de confirmación de cerrar sesión
+  const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false)
+
+  // Estado para el modal de login
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false)
 
   // Estado para los datos del usuario
   const [userData, setUserData] = useState({
@@ -27,29 +51,38 @@ export default function Perfil() {
   const reservacionesRecientes = [
     {
       id: "RES-2025-001",
-      fecha: "20/07/2025",
-      vehiculo: "Koenigsegg Toyota",
+      fecha: "20 de Julio de 2022",
+      vehiculo: "Toyota Hiace",
       tipo: "Furgoneta",
-      estado: "En Proceso",
-      total: "$84.00",
+      estado: "Aprobada",
+      total: "$14.00",
     },
     {
       id: "RES-2025-002",
-      fecha: "15/06/2025",
+      fecha: "5 de Marzo de 2025",
       vehiculo: "Nissan GT-R",
       tipo: "Minibus",
-      estado: "Validación",
-      total: "$120.00",
+      estado: "Pendiente",
+      total: "$14.00",
     },
     {
       id: "RES-2024-003",
-      fecha: "10/05/2025",
+      fecha: "30 de Mayo de 2023",
       vehiculo: "Toyota RAV4",
       tipo: "SUV",
-      estado: "Procesada",
-      total: "$65.00",
+      estado: "Denegada",
+      total: "$14.00",
     },
   ]
+
+  // Función para obtener la clase del estado
+  const getStatusClass = (estado) => {
+    switch(estado.toLowerCase()) {
+      case 'aprobada': return 'status-approved'
+      case 'denegada': return 'status-denied'
+      default: return 'status-pending'
+    }
+  }
 
   // Función para manejar el cambio en los inputs
   const handleInputChange = (e) => {
@@ -70,6 +103,64 @@ export default function Perfil() {
   const handleCancelEdit = () => {
     setTempData({ ...userData })
     setEditMode(false)
+  }
+
+  // Función para abrir el modal de eliminación de cuenta
+  const handleDeleteClick = (e) => {
+    e.preventDefault()
+    setIsDeleteModalOpen(true)
+  }
+  
+  // Función para abrir el modal de cierre de sesión
+  const handleLogoutClick = (e) => {
+    e.preventDefault()
+    setIsLogoutModalOpen(true)
+  }
+
+  // Función para manejar el cierre de sesión
+  const handleConfirmLogout = () => {
+    // Eliminar el estado de autenticación del localStorage
+    localStorage.removeItem("auth")
+    // Redirigir a la página principal
+    window.location.href = "/"
+  }
+  
+  // Función para cancelar el cierre de sesión
+  const handleCancelLogout = () => {
+    setIsLogoutModalOpen(false)
+  }
+
+  // Función para confirmar la eliminación de cuenta
+  const handleConfirmDelete = () => {
+    // Cerrar el modal de confirmación y abrir el modal de login
+    setIsDeleteModalOpen(false)
+    setIsLoginModalOpen(true)
+  }
+
+  // Función para manejar el cierre del modal de login
+  const handleLoginClose = () => {
+    setIsLoginModalOpen(false)
+  }
+
+  // Función para manejar el login exitoso antes de eliminar la cuenta
+  const handleLoginSuccess = () => {
+    // Aquí iría la lógica para eliminar la cuenta después de verificar la identidad
+    console.log("Identidad verificada, cuenta eliminada")
+    setIsLoginModalOpen(false)
+    // Redirigir al usuario a la página de inicio (o donde corresponda)
+    window.location.href = "/"
+  }
+
+  // Función para manejar la recuperación de contraseña
+  const handleForgotPassword = () => {
+    setIsLoginModalOpen(false)
+    // Aquí podría redirigir a una página de recuperación de contraseña
+    console.log("Redirigir a recuperación de contraseña")
+  }
+
+  // Función para cancelar la eliminación de cuenta
+  const handleCancelDelete = () => {
+    setIsDeleteModalOpen(false)
   }
 
   return (
@@ -94,19 +185,15 @@ export default function Perfil() {
                 <Lock size={18} />
                 <span>Cambiar Contraseña</span>
               </Link>
-              <Link to="/desactivar-cuenta" className="sidebar-item">
-                <User size={18} />
-                <span>Desactivar Cuenta</span>
-              </Link>
             </div>
           </div>
 
           <div className="sidebar-section">
-            <Link to="/cerrar-sesion" className="sidebar-item">
+            <Link to="#" onClick={handleLogoutClick} className="sidebar-item">
               <LogOut size={18} />
               <span>Cerrar Sesión</span>
             </Link>
-            <Link to="/eliminar-cuenta" className="sidebar-item delete">
+            <Link to="#" onClick={handleDeleteClick} className="sidebar-item delete">
               <Trash2 size={18} />
               <span>Eliminar Cuenta</span>
             </Link>
@@ -129,7 +216,7 @@ export default function Perfil() {
           <div className="perfil-sections">
             {/* Información personal */}
             <section className="perfil-section">
-              <div className="section-header">
+              <div className="sectionperfil-header">
                 <h2>Información personal</h2>
                 {!editMode ? (
                   <button className="edit-button" onClick={() => setEditMode(true)}>
@@ -223,39 +310,38 @@ export default function Perfil() {
 
             {/* Historial de reservaciones */}
             <section className="perfil-section">
-              <div className="section-header">
+              <div className="sectionperfil-header">
                 <h2>Historial de Reservaciones</h2>
                 <Link to="/historial" className="ver-todas">
                   Ver todas
                 </Link>
               </div>
               <div className="section-content">
-                <div className="reservations-table">
-                  {reservacionesRecientes.map((reserva) => (
-                    <Link to={`/detalles-reservacion/${reserva.id}`} key={reserva.id} className="reservation-row">
-                      <div className="reservation-icon">
-                        <Car size={20} />
-                      </div>
-                      <div className="reservation-info">
-                        <div className="reservation-date">
-                          <span>Fecha</span>
-                          <strong>{reserva.fecha}</strong>
+                <div className="reservaciones-lista">
+                  {reservacionesRecientes.map(reserva => (
+                    <div className="reservacion-item" key={reserva.id}>
+                      <div className="reservacion-info">
+                        <div className="vehicle-cell">
+                          <div className="vehicle-img-container">
+                            <img src={vehicleImages[reserva.tipo]} alt={reserva.vehiculo} className="vehicle-thumbnail" />
+                          </div>
+                          <div className="vehicleperfil-info">
+                            <div className="vehicle-name">{reserva.vehiculo}</div>
+                            <div className="vehicle-type">{reserva.tipo}</div>
+                          </div>
                         </div>
-                        <div className="reservation-vehicle">
-                          <span>Vehículo</span>
-                          <strong>{reserva.tipo}</strong>
-                        </div>
-                        <div className="reservation-status">
-                          <span>Estado</span>
-                          <strong className={reserva.estado.replace(/\s+/g, "-").toLowerCase()}>
+                        <div className="reservacion-fecha">{reserva.fecha}</div>
+                        <div className="reservacion-detalles">
+                          <div className="reservacion-total">{reserva.total}</div>
+                          <span className={`status-badge ${getStatusClass(reserva.estado)}`}>
                             {reserva.estado}
-                          </strong>
+                          </span>
                         </div>
                       </div>
-                      <div className="reservation-action">
-                        <ChevronRight size={20} />
-                      </div>
-                    </Link>
+                      <Link to={`/historial/${reserva.id}`} className="reservacion-arrow" aria-label="Ver detalles de reservación">
+                        <ArrowRight size={20} strokeWidth={2.5} />
+                      </Link>
+                    </div>
                   ))}
                 </div>
               </div>
@@ -263,6 +349,36 @@ export default function Perfil() {
           </div>
         </main>
       </div>
+
+      {/* Modal de confirmación para eliminar cuenta */}
+      <ConfirmationModal
+        isOpen={isDeleteModalOpen}
+        onClose={handleCancelDelete}
+        onConfirm={handleConfirmDelete}
+        title="¿Estás seguro de que quiere eliminar su cuenta?"
+        message="Esta acción no se puede deshacer. Todos sus datos serán eliminados permanentemente."
+        confirmText="Estoy seguro"
+        cancelText="No estoy seguro"
+      />
+      
+      {/* Modal de confirmación para cerrar sesión */}
+      <ConfirmationModal
+        isOpen={isLogoutModalOpen}
+        onClose={handleCancelLogout}
+        onConfirm={handleConfirmLogout}
+        title="¿Estás seguro de que desea cerrar sesión?"
+        message="Tendrás que volver a iniciar sesión para acceder a tu cuenta."
+        confirmText="Estoy seguro"
+        cancelText="No estoy seguro"
+      />
+
+      {/* Modal de login para verificar identidad */}
+      <LoginPopUp 
+        isOpen={isLoginModalOpen}
+        onClose={handleLoginClose}
+        onLoginSuccess={handleLoginSuccess} 
+        onForgotPassword={handleForgotPassword}
+      />
 
       <Footer />
     </div>

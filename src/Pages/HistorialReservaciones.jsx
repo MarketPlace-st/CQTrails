@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { PDFDownloadLink } from '@react-pdf/renderer'
 import PreFacturaPDF from '../Componentes/PreFacturaPDF'
 import Header from "../Componentes/HeaderAuthenticated"
@@ -8,11 +8,12 @@ import "../Estilos/HistorialReservaciones.css"
 
 export default function HistorialReservaciones() {
   const [searchTerm, setSearchTerm] = useState("")
-  const [filterPeriod, setFilterPeriod] = useState("30")
+  const [filterPeriod, setFilterPeriod] = useState("all")
+  const navigate = useNavigate()
 
   const reservations = [
     {
-      id: 1,
+      id: "RES-2025-001",
       fecha: "20 de Julio de 2022",
       reservadaA: "Marco Polo",
       total: "14.00",
@@ -35,17 +36,17 @@ export default function HistorialReservaciones() {
       ]
     },
     {
-      id: 2,
+      id: "RES-2025-002",
       fecha: "5 de Marzo de 2025",
       reservadaA: "Polo Marco",
-      total: "$14.00",
+      total: "14.00",
       estado: "Pendiente"
     },
     {
-      id: 3,
+      id: "RES-2024-003",
       fecha: "30 de Mayo de 2023",
       reservadaA: "Polo Marco",
-      total: "$14.00",
+      total: "14.00",
       estado: "Denegada"
     },
   ]
@@ -157,7 +158,7 @@ export default function HistorialReservaciones() {
         </div>
         
         <div className="reservations-table-container">
-          <table className="reservations-table">
+          <table className="reservationshistorial-table">
             <thead>
               <tr>
                 <th>Fecha de Reservación</th>
@@ -179,12 +180,16 @@ export default function HistorialReservaciones() {
                     </span>
                   </td>
                   <td className="actions-cell">
-                    <Link 
-                      to={`/historial/${reservation.id}`} 
+                    <button 
+                      onClick={() => {
+                        console.log("Navegando a detalles de reservación:", reservation.id);
+                        const reservationId = String(reservation.id);
+                        window.location.href = `/historial/${reservationId}`;
+                      }}
                       className="action-button view-button"
                     >
                       Ver detalles
-                    </Link>
+                    </button>
                     {reservation.estado.toLowerCase() === 'aprobada' && (
                       <PDFDownloadLink
                         document={

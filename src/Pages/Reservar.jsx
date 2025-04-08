@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react"
+import { useNavigate } from "react-router-dom"
 import HeaderAuthenticated from "../Componentes/HeaderAuthenticated"
+import Header from "../Componentes/Header"
 import Sidebar from "../Componentes/SideBar"
 import VehicleGrid from "../Componentes/VehicleGrid"
 import SearchBar from "../Componentes/SearchBar"
@@ -14,6 +16,9 @@ import bus from "../Imagenes/Autobus.png"
 import ambulance from "../Imagenes/Ambulancia.png"
 
 function Reservar() {
+  const navigate = useNavigate()
+  const isAuthenticated = localStorage.getItem("auth") === "true"
+
   // Datos iniciales de vehículos
   const initialVehicles = [
     {
@@ -149,7 +154,7 @@ function Reservar() {
 
   return (
     <div className="page-container">
-      <HeaderAuthenticated />
+      {isAuthenticated ? <HeaderAuthenticated /> : <Header />}
       <div className="vehicle-rental">
         <div className="container">
           <div className="vehicle-content">

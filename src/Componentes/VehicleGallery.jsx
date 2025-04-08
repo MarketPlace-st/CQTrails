@@ -13,18 +13,21 @@ import lateralBus from "../Imagenes/autobus-lujo-interior.jpg"
 import interiorAmbulancia from "../Imagenes/AmbulanciaInterior.png"
 import lateralAmbulancia from "../Imagenes/AmbulanciaLateral.png"
 
-function VehicleGallery({ images }) {
+function VehicleGallery({ vehicle }) {
   const [selectedImage, setSelectedImage] = useState(0)
   const [vehicleImages, setVehicleImages] = useState([])
 
   useEffect(() => {
-    // Recuperar el vehículo seleccionado del localStorage
-    const selectedVehicle = JSON.parse(localStorage.getItem('selectedVehicle'))
-    if (selectedVehicle) {
+    // Usar vehicle prop si está disponible, de lo contrario, buscar en localStorage
+    const vehicleData = vehicle || JSON.parse(localStorage.getItem('selectedVehicle'))
+    
+    if (vehicleData) {
       // Determinar qué conjunto de imágenes usar basado en el tipo de vehículo
       let interiorImage, lateralImage;
+      let vehicleType = vehicleData.type?.toLowerCase() || '';
+      let vehicleImage = vehicleData.image || '';
       
-      switch(selectedVehicle.type) {
+      switch(vehicleType) {
         case 'furgoneta':
           interiorImage = interiorFurgoneta;
           lateralImage = lateralFurgoneta;
@@ -46,17 +49,21 @@ function VehicleGallery({ images }) {
           lateralImage = lateralAmbulancia;
           break;
         default:
-          interiorImage = selectedVehicle.image;
-          lateralImage = selectedVehicle.image;
+          interiorImage = vehicleImage;
+          lateralImage = vehicleImage;
       }
 
+      console.log("Tipo de vehículo:", vehicleType);
+      console.log("Imagen del vehículo:", vehicleImage);
+      console.log("Imágenes seleccionadas:", [vehicleImage, interiorImage, lateralImage]);
+
       setVehicleImages([
-        { id: 1, src: selectedVehicle.image, alt: "Vista frontal" },
+        { id: 1, src: vehicleImage, alt: "Vista frontal" },
         { id: 2, src: interiorImage, alt: "Vista interior" },
         { id: 3, src: lateralImage, alt: "Vista lateral" }
       ])
     }
-  }, [])
+  }, [vehicle])
 
   return (
     <div className="vehicle-gallery">

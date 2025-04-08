@@ -100,15 +100,16 @@
     border-radius: 12px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
     overflow: hidden;
+    width: 100%;
   }
   
-  .reservations-table {
+  .reservationshistorial-table {
     width: 100%;
     border-collapse: separate;
     border-spacing: 0;
   }
   
-  .reservations-table th {
+  .reservationshistorial-table th {
     background-color: white;
     padding: 20px;
     text-align: left;
@@ -119,13 +120,13 @@
     border-bottom: 2px solid #f0f0f0;
   }
   
-  .reservations-table td {
+  .reservationshistorial-table td {
     padding: 20px;
     border-bottom: 1px solid #f0f0f0;
     color: #333;
   }
   
-  .reservations-table tr:hover {
+  .reservationshistorial-table tr:hover {
     background-color: #f8f9fa;
   }
   

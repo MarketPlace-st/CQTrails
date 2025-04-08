@@ -1,8 +1,16 @@
 import "../Estilos/HeroSection.css"
 import heroCar from "../Imagenes/hero-car.png"
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const HeroSection = ({ vehicles = [] }) => {
+  const navigate = useNavigate()
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    navigate('/reservar')
+  }
+
   return (
     <section className="cq-hero">
       <div className="cq-hero__container">
@@ -14,7 +22,7 @@ const HeroSection = ({ vehicles = [] }) => {
             <br />
             para tu empresa
           </h1>
-          <button className="cq-hero__cta-button">¡Reserva ya!</button>
+          <button className="cq-hero__cta-button" onClick={() => navigate('/reservar')}>¡Reserva ya!</button>
         </div>
         
         <div className="cq-hero__image-wrapper">
@@ -23,7 +31,7 @@ const HeroSection = ({ vehicles = [] }) => {
       </div>
 
       <div className="cq-hero__search">
-        <form className="cq-hero__search-form">
+        <form className="cq-hero__search-form" onSubmit={handleSubmit}>
           <div className="cq-hero__search-field">
             <label className="cq-hero__search-label">Marca</label>
             <div className="cq-hero__select-wrapper">
