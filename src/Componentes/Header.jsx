@@ -60,6 +60,7 @@ function Header({ onLoginClick }) {
       handleLoginClick(path)
       return
     }
+    closeDropdown()
     navigate(path)
   }
 
@@ -87,7 +88,7 @@ function Header({ onLoginClick }) {
           <div className="cq-header__nav-section">
             <nav className="cq-header__nav">
               <div className="cq-header__nav-links">
-                <div className="cq-header__dropdown">
+                <div className="cq-header__dropdown dropdown-container">
                   <button 
                     type="button" 
                     className="cq-header__nav-button" 
@@ -114,9 +115,12 @@ function Header({ onLoginClick }) {
                   
                   {dropdownOpen && (
                     <div className="cq-header__dropdown-menu">
-                      <Link to="/" className="cq-header__dropdown-item">
-                        Ver todos los vehículos
-                      </Link>
+                      <button 
+                        onClick={() => handleNavigation("/reservar")} 
+                        className="cq-header__dropdown-item"
+                      >
+                        Reservar
+                      </button>
                       <button 
                         onClick={() => handleNavigation("/historial", true)} 
                         className="cq-header__dropdown-item"
